@@ -1,8 +1,7 @@
 const getters = {
-
-  isCollapse: state => state.commons.isCollapse,
-  isFullScren: state => state.commons.isFullScren,
-  website: state => state.commons.website,
+    isCollapse: state => state.commons.isCollapse,
+    isFullScreen: state => state.commons.isFullScreen,
+    website: state => state.commons.website,
 
 }
 export default getters

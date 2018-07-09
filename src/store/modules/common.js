@@ -1,12 +1,14 @@
 import website from '@/const/website'
+import {CommonActions} from "../actions";
+
 const commons = {
   state: {
     isCollapse: false,
-    isFullScren: false,
+    isFullScreen: false,
     website: website,
   },
   mutations: {
-    SET_COLLAPSE: (state) => {
+    [CommonActions.SET_COLLAPSE]: (state) => {
       state.isCollapse = !state.isCollapse;
     },
   }

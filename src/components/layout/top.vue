@@ -35,6 +35,9 @@
 
 <script>
 import { mapGetters } from "vuex";
+
+import {CommonActions} from "../../store/actions";
+
 export default {
   name: 'Top',
   data () {
@@ -47,7 +50,7 @@ export default {
   },
   methods: {
     showCollapse () {
-      this.$store.commit("SET_COLLAPSE");
+      this.$store.commit(CommonActions.SET_COLLAPSE);
     },
   }
 }
