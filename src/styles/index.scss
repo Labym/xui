@@ -1,0 +1,88 @@
+@import './mixin.scss';
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+
+@include scrollBar();
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Microsoft YaHei";
+  line-height: 2;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.el-menu--horizontal {
+  border-bottom: none !important;
+}
+
+// 过渡动画 横向渐变
+.fade-transverse-leave-active,
+.fade-transverse-enter-active {
+  transition: all .5s;
+}
+
+.fade-transverse-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.fade-transverse-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+// 过渡动画 缩放渐变
+.fade-scale-leave-active,
+.fade-scale-enter-active {
+  transition: all .5s;
+}
+
+.fade-scale-enter {
+  opacity: 0;
+  transform: scale(1.2);
+}
+
+.fade-scale-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
+}
