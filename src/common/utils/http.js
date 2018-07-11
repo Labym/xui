@@ -7,9 +7,9 @@ axios.defaults.baseURL = API_URL;
 axios.interceptors.request.use(
     config => {
         // const token = getCookie('名称');
-        config.data = JSON.stringify(config.data);
+        // config.data = JSON.stringify(config.data);
         config.headers = {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json'
         }
         // if(token){
         //  config.params = {'token':token}
