@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --port 8000",
+    "start": "vue-cli-service serve --port 8000",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.4.3",
+    "nprogress": "^0.2.0",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"

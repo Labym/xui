@@ -4,7 +4,12 @@ export const CommonActions={
 
 export const UserActions={
     actions:{
-        LOGIN:'LOGIN'
+        LOGIN:'LOGIN',
+        CAPTCHA:'CAPTCHA'
+    },
+    mutations:{
+        SET_TOKEN:'SET_TOKEN',
+        SET_CAPTCHA:'SET_CAPTCHA'
     }
 }
 

@@ -21,8 +21,8 @@
                 <el-col :span="10">
                     <div class="login-code">
                         <span class="login-code-img" @click="refreshCode" v-if="captcha.type == 'text'">{{captcha.value}}</span>
-                        <img :src="captcha.src" class="login-code-img" @click="refreshCode" v-else/>
-                        <!-- <i class="icon-shuaxin login-code-icon" @click="refreshCode"></i> -->
+                        <img :src="captcha.data" class="login-code-img" @click="refreshCode" v-else/>
+                        <i class="icon-shuaxin login-code-icon" @click="refreshCode"></i>
                     </div>
                 </el-col>
             </el-row>
@@ -60,18 +60,18 @@
             };
             return {
                 loginForm: {
-                    username: "admin@aa.com",
-                    password: "123456",
+                    username: "admin@a.com",
+                    password: "adminadmin",
                     captcha: "1111",
                     captchaId: ""
                 },
                 checked: false,
-                captcha: {
-                    src: "",
-                    value: "",
-                    len: 4,
-                    type: "text"
-                },
+                // captcha: {
+                //     src: "data:image/jpeg;base64,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",
+                //     value: "1111",
+                //     len: 4,
+                //     type: "img"
+                // },
                 loginRules: {
                     username: [
                         { required: true, trigger: "blur", validator: validateUsername }
@@ -94,16 +94,12 @@
         },
         mounted() {},
         computed: {
-            ...mapGetters(["tagWel"])
+            ...mapGetters(["captcha"])
         },
         props: [],
         methods: {
             refreshCode() {
-                // this.loginForm.redomStr = randomLenNum(this.code.len, true);
-                // this.code.type == "text"
-                //     ? (this.code.value = randomLenNum(this.code.len))
-                //     : (this.code.src = `${this.codeUrl}/${this.loginForm.redomStr}`);
-                // this.loginForm.code = this.code.value;
+                this.$store.dispatch(UserActions.actions.CAPTCHA)
             },
             showPassword() {
                 this.passwordType == ""
@@ -114,7 +110,8 @@
                 this.$refs.loginForm.validate(valid => {
                     if (valid) {
                         this.$store.dispatch(UserActions.actions.LOGIN, this.loginForm).then(res => {
-                            this.$router.push({ path: this.tagWel.value });
+                            console.log(res)
+                            this.$router.push({ path: '/' });
                         });
                     }
                 });
