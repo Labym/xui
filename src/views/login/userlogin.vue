@@ -60,8 +60,8 @@
             };
             return {
                 loginForm: {
-                    username: "admin@aa.com",
-                    password: "123456",
+                    username: "admin@a.com",
+                    password: "adminadmin",
                     captcha: "1111",
                     captchaId: ""
                 },
@@ -114,7 +114,7 @@
                 this.$refs.loginForm.validate(valid => {
                     if (valid) {
                         this.$store.dispatch(UserActions.actions.LOGIN, this.loginForm).then(res => {
-                            this.$router.push({ path: this.tagWel.value });
+                            this.$router.push({ path: '/' });
                         });
                     }
                 });

@@ -5,6 +5,9 @@ export const CommonActions={
 export const UserActions={
     actions:{
         LOGIN:'LOGIN'
+    },
+    mutations:{
+        SET_TOKEN:'SET_TOKEN'
     }
 }
 

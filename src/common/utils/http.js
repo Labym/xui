@@ -48,7 +48,7 @@ export function fetch(url, params = {}) {
             params: params
         })
             .then(response => {
-                resolve(response.data);
+                resolve(response);
             })
             .catch(err => {
                 reject(err)
@@ -66,7 +66,7 @@ export function post(url, data = {}) {
     return new Promise((resolve, reject) => {
         axios.post(url, data)
             .then(response => {
-                resolve(response.data);
+                resolve(response);
             }, err => {
                 reject(err)
             })
@@ -77,7 +77,7 @@ export function put(url, data = {}) {
     return new Promise((resolve, reject) => {
         axios.put(url, data)
             .then(response => {
-                resolve(response.data);
+                resolve(response);
             }, err => {
                 reject(err)
             })
