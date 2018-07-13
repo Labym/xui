@@ -1,5 +1,4 @@
-import {post,fetch} from "../common/utils/http";
-
+import {fetch,post,put} from "../common/utils/http";
 const authenticate =(username,password,rememberMe,captcha)=>{
     return post('/authenticate',{username,password,rememberMe,captcha})
 }
