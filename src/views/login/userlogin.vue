@@ -2,20 +2,20 @@
     <el-form class="login-form" status-icon :rules="loginRules" ref="loginForm" :model="loginForm" label-width="0">
         <el-form-item prop="username">
             <el-input size="small" @keyup.enter.native="handleLogin" v-model="loginForm.username" auto-complete="off" placeholder="请输入用户名">
-                <i slot="prefix" class="icon-yonghu"></i>
+                <icon slot="prefix" name="user"></icon>
             </el-input>
         </el-form-item>
         <el-form-item prop="password">
             <el-input size="small" @keyup.enter.native="handleLogin" :type="passwordType" v-model="loginForm.password" auto-complete="off" placeholder="请输入密码">
                 <i class="el-icon-view el-input__icon" slot="suffix" @click="showPassword"></i>
-                <i slot="prefix" class="icon-mima"></i>
+                <icon slot="prefix" name="lock"></icon>
             </el-input>
         </el-form-item>
         <el-form-item prop="captcha">
             <el-row :span="24">
                 <el-col :span="14">
                     <el-input size="small" @keyup.enter.native="handleLogin" :maxlength="captcha.len" v-model="loginForm.captcha" auto-complete="off" placeholder="请输入验证码">
-                        <i slot="prefix" class="icon-yanzhengma"></i>
+                        <icon slot="prefix" name="safetycertificate"></icon>
                     </el-input>
                 </el-col>
                 <el-col :span="10">
