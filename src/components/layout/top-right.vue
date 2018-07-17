@@ -10,9 +10,9 @@
 
             </span>
         </el-tooltip>
-        <el-tooltip class="item" effect="dark" :content="isFullScren?'退出全屏':'全屏'" placement="bottom">
+        <el-tooltip class="item" effect="dark" :content="isFullScreen?'退出全屏':'全屏'" placement="bottom">
             <span class="top-item">
-                <i :class="isFullScren?'icon-tuichuquanping':'icon-quanping'" @click="handleScreen"></i>
+                <i :class="isFullScreen?'icon-tuichuquanping':'icon-quanping'" @click="handleScreen"></i>
             </span>
         </el-tooltip>
         <el-tooltip class="item" effect="dark" content="用户头像" placement="bottom">
@@ -44,13 +44,18 @@
 
 <script>
     import {mapGetters} from "vuex";
+
     export default {
         name: "top-right",
         computed: {
             ...mapGetters([
-                "isCollapse", "userInfo"
+                "isCollapse", "userInfo", "isFullScreen"
             ])
         },
+        methods: {
+            handleScreen() {
+            }
+        }
     }
 </script>
 

@@ -5,11 +5,14 @@ export const CommonActions={
 export const UserActions={
     actions:{
         LOGIN:'LOGIN',
-        CAPTCHA:'CAPTCHA'
+        CAPTCHA:'CAPTCHA',
+        GET_MENUS:'GET_MENUS'
     },
     mutations:{
         SET_TOKEN:'SET_TOKEN',
-        SET_CAPTCHA:'SET_CAPTCHA'
+        SET_CAPTCHA:'SET_CAPTCHA',
+        SET_MENUS:'SET_MENUS',
+        CHANGE_CURRENT_MENU:'CHANGE_CURRENT_MENU'
     }
 }
 

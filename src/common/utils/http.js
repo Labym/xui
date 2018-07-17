@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {API_URL} from "../config/env";
+import {getToken} from "./session";
 
 axios.defaults.timeout = 5000;
 axios.defaults.baseURL = API_URL;
@@ -9,11 +10,11 @@ axios.interceptors.request.use(
         // const token = getCookie('名称');
         // config.data = JSON.stringify(config.data);
         config.headers = {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         }
-        // if(token){
-        //  config.params = {'token':token}
-        // }
+        if(getToken()){
+          config.headers['Authorization']='Bearer  '+getToken()
+        }
         return config;
     },
     error => {

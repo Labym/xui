@@ -11,7 +11,11 @@ const captcha= ()=>{
     return fetch('/captcha')
 }
 
+const currentMenus= ()=>{
+    return fetch('/menus/current')
+}
+
 const UserApi={
-    authenticate,getUserInfo,captcha
+    authenticate,getUserInfo,captcha,currentMenus
 }
 export default  UserApi

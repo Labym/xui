@@ -28,7 +28,7 @@
         name: "top-menu",
         computed: {
             ...mapGetters([
-                "userInfo",
+                "userInfo","menus"
             ])
         },
     }
