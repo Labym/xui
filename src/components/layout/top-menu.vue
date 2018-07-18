@@ -1,36 +1,44 @@
 <template>
     <el-menu
-
             class="el-menu-top"
             mode="horizontal"
+            :default-active="activeIndex"
+            :onselect="changeNav"
     >
-        <el-menu-item index="1">处理中心</el-menu-item>
-        <el-submenu index="2">
-            <template slot="title">我的工作台</template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2">选项2</el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
-            <el-submenu index="2-4">
-                <template slot="title">选项4</template>
-                <el-menu-item index="2-4-1">选项1</el-menu-item>
-                <el-menu-item index="2-4-2">选项2</el-menu-item>
-                <el-menu-item index="2-4-3">选项3</el-menu-item>
-            </el-submenu>
-        </el-submenu>
-        <el-menu-item index="3" disabled>消息中心</el-menu-item>
-        <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+        <template v-for="(item,index) in menus">
+            <el-menu-item :index="index+''" @click.native="changeNav(item)">{{item.name}}</el-menu-item>
+        </template>
     </el-menu>
 </template>
 
 <script>
     import {mapGetters} from "vuex";
+    import {UserActions} from "../../store/actions";
+
     export default {
         name: "top-menu",
+        data() {
+            return {
+                activeIndex: '0'
+            }
+        },
         computed: {
             ...mapGetters([
-                "userInfo","menus"
+                "userInfo", "menus", "currentMenu"
             ])
         },
+        beforeMount() {
+            this.changeNav(this.menus[0])
+        },
+        methods: {
+            filterPath(index) {
+                return index + "index"
+            },
+
+            changeNav(menu) {
+                this.$store.commit(UserActions.mutations.CHANGE_CURRENT_MENU,menu)
+            }
+        }
     }
 </script>
 

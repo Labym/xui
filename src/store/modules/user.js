@@ -12,7 +12,7 @@ const user = {
         captcha: {},
         token: getToken(),
         menus: getMenus(),
-        currentMenu:null
+        currentMenu:{}
     },
     actions: {
         [UserActions.actions.LOGIN]({commit, state, dispatch}, userInfo) {
@@ -42,6 +42,7 @@ const user = {
             return new Promise((resolve, reject) => {
                 UserApi.currentMenus().then(res => {
                     const data = res.data;
+                    console.log(data)
                     commit(UserActions.mutations.SET_MENUS, data);
                     setMenus(data)
                     resolve();
@@ -57,11 +58,12 @@ const user = {
             state.captcha = data;
         },
         [UserActions.mutations.SET_MENUS]: (state, data) => {
-            console.log(data[0])
+            console.log('SET_MENUS')
+            console.log(data)
             state.menus = data;
             state.currentMenu=data[0];
         },
-        [UserActions.mutations.SET_MENUS]: (state, current) => {
+        [UserActions.mutations.CHANGE_CURRENT_MENU]: (state, current) => {
             state.currentMenu=current
         },
 

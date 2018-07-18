@@ -8,9 +8,9 @@ export const getToken = () => {
 }
 
 export const setMenus=(menus)=>{
-    sessionStorage.setItem("menus",menus)
+    sessionStorage.setItem("menus",JSON.stringify(menus))
 }
 
 export const getMenus=()=>{
-   return sessionStorage.getItem("menus")
+   return JSON.parse(sessionStorage.getItem("menus"))
 }

@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {API_URL} from "../config/env";
 import {getToken} from "./session";
-
+import {mockAll} from "../../api/mock";
+mockAll(axios)
 axios.defaults.timeout = 5000;
 axios.defaults.baseURL = API_URL;
 //http request 拦截器

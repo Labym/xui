@@ -2,46 +2,37 @@
     <transition name="el-zoom-in-center">
         <div class="sidebar-container" :class="{'is-active':isCollapse}">
             <Logo :isCollapse="isCollapse"></Logo>
-            <el-menu
-                    :unique-opened="true"
-                    default-active="2"
-                    mode="vertical"
-                    :show-timeout="200"
-                    background-color="#00142a"
-                    text-color="hsla(0,0%,100%,.65)"
-                    active-text-color="#409eff"
-                    :collapse="isCollapse">
-                <el-submenu index="1" >
-                    <template slot="title">
-                        <i class="el-icon-location"></i>
-                        <span>导航一</span>
-                    </template>
-                    <el-menu-item-group>
-                        <template slot="title">分组一</template>
-                        <el-menu-item index="1-1">选项1</el-menu-item>
-                        <el-menu-item index="1-2">选项2</el-menu-item>
-                    </el-menu-item-group>
-                    <el-menu-item-group title="分组2">
-                        <el-menu-item index="1-3">选项3</el-menu-item>
-                    </el-menu-item-group>
-                    <el-submenu index="1-4">
-                        <template slot="title">选项4</template>
-                        <el-menu-item index="1-4-1">选项1</el-menu-item>
+
+            <el-menu unique-opened
+                     class="el-menu-vertical-demo"
+                     mode="vertical"
+                     :router="true"
+                     :show-timeout="200"
+                     background-color="#00142a"
+                     text-color="hsla(0,0%,100%,.65)"
+                     active-text-color="#409eff"
+                     :collapse="isCollapse">
+                <template v-for="(item,index) in currentMenu.children">
+                    <el-menu-item v-if="item.children.length===0 " :index="index+''"  :key="item.code">
+                        <icon :name="item.extensions.icon"></icon>
+                        <span slot="title">{{item.name}}</span>
+                    </el-menu-item>
+
+                    <el-submenu v-else :index="index+''" :key="item.code" >
+                        <template slot="title">
+                            <icon :name="item.extensions.icon"></icon>
+                            <span slot="title" :class="{'el-menu--display':isCollapse}">{{item.name}}</span>
+                        </template>
+                        <template v-for="(child,cindex) in item.children">
+                            <el-menu-item :index="cindex+''"  :key="cindex" :route="{path:child.url}">
+                                <icon :name="child.extensions.icon"></icon>
+                                <span slot="title">{{child.name}}</span>
+                            </el-menu-item>
+                        </template>
                     </el-submenu>
-                </el-submenu>
-                <el-menu-item index="2">
-                    <i class="el-icon-menu"></i>
-                    <span slot="title">导航二</span>
-                </el-menu-item>
-                <el-menu-item index="3" disabled>
-                    <i class="el-icon-document"></i>
-                    <span slot="title">导航三</span>
-                </el-menu-item>
-                <el-menu-item index="4">
-                    <i class="el-icon-setting"></i>
-                    <span slot="title">导航四</span>
-                </el-menu-item>
+                </template>
             </el-menu>
+
         </div>
     </transition>
 </template>
@@ -54,9 +45,13 @@
         components: {
             Logo
         },
+        mounted(){
+            console.log('--=====')
+
+        },
         computed: {
             ...mapGetters([
-                "isCollapse",
+                "isCollapse", "currentMenu"
             ])
         },
     }

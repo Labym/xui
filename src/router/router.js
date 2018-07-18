@@ -7,21 +7,31 @@ import Login from '../views/login/login.vue'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: About
-    },
-      {
-          path: '/login',
-          name: 'login',
-          component: Login
-      }
-  ]
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: Home,
+            children: [{
+                path:'/test',
+                name:'testaa',
+                component:About
+            },{
+                path:'/aaaa',
+                name:'aaaa',
+                component:  resolve => require(['@/views/test.vue'], resolve)
+            }
+            ]
+        },
+        {
+            path: '/about',
+            name: 'about',
+            component: About
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: Login
+        }
+    ]
 })

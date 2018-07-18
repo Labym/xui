@@ -8,6 +8,7 @@ import store from './store/index'
 import './router/permission'
 import icon from './components/icon'
 
+import './api/mock'
 Vue.use(ElementUI)
 Vue.component('icon',icon)
 Vue.config.productionTip = false

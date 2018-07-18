@@ -6,6 +6,7 @@ const getters = {
     userInfo: state => state.user.userInfo,
     captcha: state => state.user.captcha,
     menus: state => state.user.menus,
+    currentMenu: state => state.user.currentMenu,
 
 }
 export default getters
