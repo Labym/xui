@@ -1,6 +1,8 @@
 <template>
     <div class="basic-container">
-        <slot></slot>
+        <el-card>
+            <slot></slot>
+        </el-card>
     </div>
 </template>
 
@@ -10,11 +12,9 @@
     };
 </script>
 
-<style>
+<style lang="scss">
     .basic-container {
         padding: 20px;
-        margin-bottom: 20px;
-        background-color: #fff;
         border-radius: 6px;
     }
 </style>

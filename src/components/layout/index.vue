@@ -59,23 +59,6 @@
     .header-tabs {
         padding: 0 0 !important;
     }
-
-    .main {
-        height: 100%;
-        background: #f1f4f5;
-        padding: 15px;
-        box-sizing: border-box;
-        overflow-y: scroll;
-        .router {
-            padding: 15px 8px;
-            background: #fff;
-            min-height: 100%;
-            height: auto;
-            overflow: hidden;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-    }
 </style>
 
 
