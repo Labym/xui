@@ -10,10 +10,7 @@
 
             <div class="main">
                 <div class="router">
-                    <keep-alive>
-                        <router-view v-if="$route.meta.keepAlive"></router-view>
-                    </keep-alive>
-                    <router-view v-if="!$route.meta.keepAlive"></router-view>
+                    <router-view></router-view>
                 </div>
             </div>
 
@@ -26,7 +23,8 @@
     import {mapGetters} from 'vuex'
     import Top from './top'
     import Side from './side'
-    import {UserActions} from "../../store/actions";
+    import {UserActions} from "../../store/actions"
+    import {initRoute} from "../../common/utils/utils";
 
     export default {
 
@@ -36,7 +34,8 @@
         computed: mapGetters(['isCollapse', "menus", "token"]),
         beforeMount() {
             this.$store.dispatch(UserActions.actions.GET_MENUS).then(res => {
-                console.log('get menus success:' + res)
+                initRoute(this.$router,res)
+                console.log('init menus ')
             });
         },
         data() {

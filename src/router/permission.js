@@ -7,8 +7,8 @@ import 'nprogress/nprogress.css'// progress bar style
 router.beforeEach((to, from, next) => {
 
     console.log(to)
-
-    NProgress.start() // start progress bar
+    next()
+    //NProgress.start() // start progress bar
     // const value = to.query.src ? to.query.src : to.path;
     // const label = to.query.name ? to.query.name : to.name;
     // if (store.getters.website.whiteList.indexOf(value) == -1) {
@@ -18,22 +18,22 @@ router.beforeEach((to, from, next) => {
     //         query: to.query
     //     });
     // }
-    if (to.path === '/login'&&!store.getters.token){
-        next()
-    }
-
-    if (store.getters.token) { // determine if there has token
-        /* has token*/
-        if (to.path === '/login') {
-            next({path: '/'})
-            NProgress.done()
-        } else {
-            next()
-            NProgress.done()
-        }
-    } else {
-        /* has no token*/
-        next('/login')
-        NProgress.done();
-    }
+    // if (to.path === '/login'&&!store.getters.token){
+    //     next()
+    // }
+    //
+    // if (store.getters.token) { // determine if there has token
+    //     /* has token*/
+    //     if (to.path === '/login') {
+    //         next({path: '/'})
+    //         NProgress.done()
+    //     } else {
+    //         next()
+    //         NProgress.done()
+    //     }
+    // } else {
+    //     /* has no token*/
+    //     next('/login')
+    //     NProgress.done();
+    // }
 })

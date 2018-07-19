@@ -12,16 +12,7 @@ export default new Router({
             path: '/',
             name: 'home',
             component: Home,
-            children: [{
-                path:'/test',
-                name:'testaa',
-                component:About
-            },{
-                path:'/aaaa',
-                name:'aaaa',
-                component:  resolve => require(['@/views/test.vue'], resolve)
-            }
-            ]
+            children: []
         },
         {
             path: '/about',

@@ -37,15 +37,13 @@ const user = {
             })
         },
         [UserActions.actions.GET_MENUS]({commit, state, dispatch}) {
-
-            console.log('Get Menus ....')
             return new Promise((resolve, reject) => {
                 UserApi.currentMenus().then(res => {
                     const data = res.data;
                     console.log(data)
                     commit(UserActions.mutations.SET_MENUS, data);
                     setMenus(data)
-                    resolve();
+                    resolve(data);
                 })
             })
         },

@@ -36,7 +36,8 @@ export const mockAll = (axios) => {
                             "sort": 0,
                             "type": "MENU",
                             "extensions": {
-                                "icon": "user"
+                                "icon": "user",
+                                "component":'./views/resource/index'
                             },
                             "children": []
                         },
@@ -49,7 +50,8 @@ export const mockAll = (axios) => {
                             "sort": 1,
                             "type": "MENU",
                             "extensions": {
-                                "icon": "cluster"
+                                "icon": "cluster",
+                                "component":'./views/resource/index'
                             },
                             "children": []
                         },
@@ -62,7 +64,8 @@ export const mockAll = (axios) => {
                             "sort": 2,
                             "type": "MENU",
                             "extensions": {
-                                "icon": "trademark"
+                                "icon": "trademark",
+                                "component":'./views/resource/index'
                             },
                             "children": []
                         },
@@ -75,7 +78,8 @@ export const mockAll = (axios) => {
                             "sort": 3,
                             "type": "MENU",
                             "extensions": {
-                                "icon": "table"
+                                "icon": "table",
+                                "component":'../../views/resource/index.vue'
                             },
                             "children": []
                         }
