@@ -79,7 +79,7 @@ export const mockAll = (axios) => {
                             "type": "MENU",
                             "extensions": {
                                 "icon": "table",
-                                "component":'../../views/resource/index.vue'
+                                "component":'../../../views/resource/index.vue.js'
                             },
                             "children": []
                         }

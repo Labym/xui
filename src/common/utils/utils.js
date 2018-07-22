@@ -3,19 +3,7 @@ import Home from '../../pages/Home'
 import _import from'../../_component'
 
 export const initRoute = (router, menus) => {
-    console.log('initRoute')
-    const routes = []
-    menus.forEach(menu => {
-        routes.push(initMenu(menu))
-    })
-    console.log('initRoute2')
-    const route = {
-        path: '/',
-        name: 'home',
-        component: Home,
-        children: routes
-    };
-    router.addRoutes([route]);
+
 }
 
 export const initMenus = (menus) => {
