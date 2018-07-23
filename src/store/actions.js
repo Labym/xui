@@ -16,3 +16,17 @@ export const UserActions={
     }
 }
 
+export const ResourceActions={
+    actions:{
+        LIST:'RESOURCE_LIST',
+        CREATE:'RESOURCE_CREATE',
+        EDITOR:'RESOURCE_EDITOR'
+    },
+    mutations:{
+        SET_TOKEN:'SET_TOKEN',
+        SET_CAPTCHA:'SET_CAPTCHA',
+        SET_MENUS:'SET_MENUS',
+        CHANGE_CURRENT_MENU:'CHANGE_CURRENT_MENU'
+    }
+}
+

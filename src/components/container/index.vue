@@ -4,6 +4,9 @@
             <div slot="header" class="clearfix title">
                 <span><b>{{title}}</b></span>
             </div>
+            <div class="header" >
+                <slot name="header"></slot>
+            </div>
            <slot></slot>
         </el-card>
     </div>
@@ -26,6 +29,10 @@
             margin-left: 20px;
             text-align: left;
         }
-
+        .header{
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ebeef5;
+            margin-bottom: 20px;
+        }
     }
 </style>

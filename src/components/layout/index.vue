@@ -1,20 +1,28 @@
 <template>
-    <el-container style="height: 100%;">
+    <el-container class="contail" style="height: 100%;">
         <el-aside :style="{width: isCollapse ? asideWidthCollapse : asideWidth}">
-            <Side></Side>
+            <Side class="sidebar"> </Side>
         </el-aside>
         <el-container>
             <el-header class="header-tabs">
                 <Top></Top>
             </el-header>
 
-            <div class="main">
-                <div class="router">
-                    <router-view></router-view>
-                </div>
-            </div>
+            <el-main class="main">
+                <!-- 主体视图层 -->
+                <keep-alive>
+                    <transition name="fade-transverse">
+                        <router-view class="view"
+                                     v-if="$route.meta.keepAlive" />
+                    </transition>
+                </keep-alive>
+                <transition name="fade-transverse">
+                    <router-view class="view"
+                                 v-if="!$route.meta.keepAlive" />
+                </transition>
+            </el-main>
 
-            <el-footer>Footer</el-footer>
+
         </el-container>
     </el-container>
 </template>
@@ -55,8 +63,24 @@
 </script>
 
 <style lang="scss">
-    .header-tabs {
-        padding: 0 0 !important;
+    .contail {
+        height: 100%;
+    }
+    .sidebar {
+        height: 100%;
+    }
+    .tabs {
+        padding: 0;
+    }
+    .main {
+        position: relative;
+        padding: 0;
+    }
+   .view {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 </style>
 
