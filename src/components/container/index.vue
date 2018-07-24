@@ -30,7 +30,8 @@
             text-align: left;
         }
         .header{
-            padding-bottom: 20px;
+            height: auto;
+            padding-bottom: 10px;
             border-bottom: 1px solid #ebeef5;
             margin-bottom: 20px;
         }
