@@ -14,9 +14,16 @@ const resource = {
         currentMenu:{}
     },
     actions: {
-        [ResourceActions.actions.LIST]({commit, state, dispatch}) {
+        [ResourceActions.actions.LIST]({commit, state, dispatch},params) {
             return new Promise((resolve, reject) => {
-                ResourceApi.list().then(res =>{
+                ResourceApi.list(params).then(res =>{
+                    resolve(res.data);
+                })
+            })
+        },
+        [ResourceActions.actions.TREE]({commit, state, dispatch}) {
+            return new Promise((resolve, reject) => {
+                ResourceApi.tree().then(res =>{
                     resolve(res.data);
                 })
             })

@@ -12,7 +12,7 @@ const captcha= ()=>{
 }
 
 const currentMenus= ()=>{
-    return fetch('/menus/current')
+    return fetch('/resources/current/menus')
 }
 
 const UserApi={

@@ -16,8 +16,18 @@
                 <br/>
                 <el-row type="flex">
                     <el-col :span="24">
-                        <el-button type="primary" class="pull-left">添加</el-button>
-                        <el-button type="danger" class="pull-left btn-margin-left ">删除</el-button>
+                        <el-button-group class="pull-left">
+                            <el-button
+                                    icon="el-icon-edit"
+                                    type="primary"
+                                    @click="handleEdit(scope.$index, scope.row)">编辑
+                            </el-button>
+                            <el-button
+                                    icon="el-icon-delete"
+                                    type="danger"
+                                    @click="handleDelete(scope.$index, scope.row)">删除
+                            </el-button>
+                        </el-button-group>
                     </el-col>
                 </el-row>
             </div>
@@ -28,61 +38,69 @@
                     tooltip-effect="dark"
                     border
                     :data="data.content"
-                    style="width: 100%">
+                    >
                 <el-table-column
+                        align="left"
                         type="selection"
                         width="55">
                 </el-table-column>
                 <el-table-column
+                        align="left"
                         prop="id"
                         label="Id"
                         width="70">
                 </el-table-column>
                 <el-table-column
+                        align="left"
                         prop="parentId"
                         label="上级Id"
                         width="70">
                 </el-table-column>
                 <el-table-column
+                        align="left"
                         prop="name"
                         label="名字"
                         width="180">
                 </el-table-column>
                 <el-table-column
+                        align="left"
                         prop="code"
                         label="代码"
                         width="180">
                 </el-table-column>
                 <el-table-column
+                        align="left"
                         prop="type"
                         label="类型"
                         width="180">
                 </el-table-column>
                 <el-table-column
+                        align="left"
                         prop="url"
                         label="URL"
                         width="180">
                 </el-table-column>
                 <el-table-column
+                        align="left"
                         prop="createAt"
                         label="创建时间"
                         width="180">
                 </el-table-column>
 
-                <el-table-column label="操作">
+                <el-table-column  align="left" label="操作">
                     <template slot-scope="scope">
-                        <el-button
-                                icon="el-icon-edit"
-                                type="primary"
-                                size="mini"
-                                @click="handleEdit(scope.$index, scope.row)">编辑
-                        </el-button>
-                        <el-button
-                                icon="el-icon-delete"
-                                size="mini"
-                                type="danger"
-                                @click="handleDelete(scope.$index, scope.row)">删除
-                        </el-button>
+                        <el-button-group>
+                            <el-button
+                                    icon="el-icon-edit"
+                                    type="primary"
+                                    @click="handleEdit(scope.$index, scope.row)">编辑
+                            </el-button>
+                            <el-button
+                                    icon="el-icon-delete"
+                                    type="danger"
+                                    @click="handleDelete(scope.$index, scope.row)">删除
+                            </el-button>
+                        </el-button-group>
                     </template>
                 </el-table-column>
             </el-table>
@@ -96,25 +114,36 @@
                 :close-on-click-modal="false"
                >
                 <el-form ref="form" :model="form" label-width="80px">
-                    <el-form-item label="活动名称">
+                    <el-form-item label="资源名称">
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
-                    <el-form-item label="活动区域">
-                        <el-select v-model="form.region" placeholder="请选择活动区域">
-                            <el-option label="区域一" value="shanghai"></el-option>
-                            <el-option label="区域二" value="beijing"></el-option>
+                    <el-form-item label="资源代码">
+                        <el-input v-model="form.code"></el-input>
+                    </el-form-item>
+                    <el-form-item label="URL">
+                        <el-input v-model="form.url"></el-input>
+                    </el-form-item>
+                    <el-form-item label="排序">
+                        <el-input-number class="pull-left" v-model="form.sort" min="1" max="10000">0</el-input-number>
+                    </el-form-item>
+                    <el-form-item label="资源类型">
+                        <el-select class="pull-left" v-model="form.type">
+                            <el-option label="菜单"  value="MENU"></el-option>
+                            <el-option label="权限"  value="PERMISSION"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="活动时间">
-                        <el-col :span="11">
-                            <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
-                        </el-col>
-                        <el-col class="line" :span="2">-</el-col>
-                        <el-col :span="11">
-                            <el-time-picker type="fixed-time" placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
-                        </el-col>
+
+                    <el-form-item label="上级">
+                        <el-cascader
+                                class="pull-left"
+                                :props="cascaderprops"
+                                v-model="form.parentId"
+                                :options="cascaderOptions"
+                                style="width: 100%"
+                                change-on-select
+                        ></el-cascader>
                     </el-form-item>
-                    <el-form-item label="即时配送">
+                    <el-form-item label="附加属性">
                         <el-switch v-model="form.delivery"></el-switch>
                     </el-form-item>
                     <el-form-item label="活动性质">
@@ -146,17 +175,31 @@
 
 <script>
     import {ResourceActions} from "../../store/actions";
+    import ElSelectDropdown from "element-ui/packages/select/src/select-dropdown";
 
     export default {
         name: "resourceManager",
+        components: {ElSelectDropdown},
         data() {
             return {
-                form:{},
+                form:{
+                    sort:0
+                },
                 dialogVisible:false,
                 search: '',
                 multipleSelection: [],
                 data: null,
-
+                menuTree:null,
+                cascaderprops:{
+                    label:"name",
+                    value:"id"
+                },
+                cascaderOptions:[
+                    { id: 0,
+                        name: "顶级资源",
+                        url: "/system-manager",
+                        code: "systemManager"}
+                ],
                 tableData: [
                     {
                         date: '2016-05-02',
@@ -181,7 +224,13 @@
         mounted() {
             this.$store.dispatch(ResourceActions.actions.LIST).then(data => {
                 this.data = data
-                console.log(data)
+            })
+
+            this.$store.dispatch(ResourceActions.actions.TREE).then(data => {
+                data.forEach(item=>{
+                    this.cascaderOptions.push(item)
+                })
+                t
             })
         },
         methods: {
