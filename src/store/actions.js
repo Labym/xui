@@ -19,6 +19,7 @@ export const UserActions={
 export const ResourceActions={
     actions:{
         LIST:'RESOURCE_LIST',
+        TREE:'RESOURCE_TREE',
         CREATE:'RESOURCE_CREATE',
         EDITOR:'RESOURCE_EDITOR'
     },

@@ -1,8 +1,12 @@
 
 import {fetch,post,put} from "../common/utils/http";
 
-const list= ()=>{
-    return fetch('/resources')
+const list= (params)=>{
+    return fetch('/resources',params)
+}
+
+const tree= ()=>{
+    return fetch('/resources/tree')
 }
 
 const create= (resource)=>{
@@ -15,6 +19,6 @@ const editor= (resource)=>{
 
 
 const ResourceApi={
-    list,create,put
+    list,create,put,tree
 }
 export default  ResourceApi
