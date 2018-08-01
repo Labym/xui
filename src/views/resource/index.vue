@@ -40,54 +40,54 @@
                     :data="data.content"
                     >
                 <el-table-column
-                        align="left"
+                        align="center"
                         type="selection"
-                        width="55">
+                        width="40">
                 </el-table-column>
                 <el-table-column
-                        align="left"
+                        align="center"
                         prop="id"
                         label="Id"
                         width="70">
                 </el-table-column>
                 <el-table-column
-                        align="left"
+                        align="center"
                         prop="parentId"
                         label="上级Id"
                         width="70">
                 </el-table-column>
                 <el-table-column
-                        align="left"
+                        align="center"
                         prop="name"
                         label="名字"
-                        width="180">
+                        width="150">
                 </el-table-column>
                 <el-table-column
-                        align="left"
+                        align="center"
                         prop="code"
                         label="代码"
-                        width="180">
+                        width="150">
                 </el-table-column>
                 <el-table-column
-                        align="left"
+                        align="center"
                         prop="type"
                         label="类型"
-                        width="180">
+                        width="150">
                 </el-table-column>
                 <el-table-column
-                        align="left"
+                        align="center"
                         prop="url"
                         label="URL"
-                        width="180">
+                        width="150">
                 </el-table-column>
                 <el-table-column
-                        align="left"
+                        align="center"
                         prop="createAt"
                         label="创建时间"
                         width="180">
                 </el-table-column>
 
-                <el-table-column  align="left" label="操作">
+                <el-table-column  align="center" label="操作">
                     <template slot-scope="scope">
                         <el-button-group>
                             <el-button
@@ -110,7 +110,7 @@
         <el-dialog
 
                 :visible.sync="dialogVisible"
-                width="30%"
+                width="50%"
                 :close-on-click-modal="false"
                >
                 <el-form ref="form" :model="form" label-width="80px">
@@ -124,7 +124,7 @@
                         <el-input v-model="form.url"></el-input>
                     </el-form-item>
                     <el-form-item label="排序">
-                        <el-input-number class="pull-left" v-model="form.sort" min="1" max="10000">0</el-input-number>
+                        <el-input-number class="pull-left" v-model="form.sort" :min="1" :max="10000">0</el-input-number>
                     </el-form-item>
                     <el-form-item label="资源类型">
                         <el-select class="pull-left" v-model="form.type">
@@ -143,26 +143,32 @@
                                 change-on-select
                         ></el-cascader>
                     </el-form-item>
-                    <el-form-item label="附加属性">
-                        <el-switch v-model="form.delivery"></el-switch>
+                    <el-form-item
+                            v-for="(extension, index) in form.extensions"
+                            :label="'附加属性'+(index+1)"
+                            :key="'extension_'+index"
+                    >
+
+                        <el-col :span="8">
+                            <el-input class="pull-left" style="width: 100%;"
+                                      placeholder="请输入属性名称"
+                                      v-model="extension.key"></el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">:</el-col>
+                        <el-col :span="8">
+                            <el-input
+                                    placeholder="请输入属性值"
+                                    v-model="extension.value"></el-input>
+                        </el-col>
+                        <el-col class="line" :span="7">
+                            <el-button-group>
+                                <el-button type="primary" icon="el-icon-plus" @click="handleAddExtension"></el-button>
+                                <el-button type="danger" icon="el-icon-delete" @click="handleRemoveExtension(index)"></el-button>
+                            </el-button-group>
+                        </el-col>
+
                     </el-form-item>
-                    <el-form-item label="活动性质">
-                        <el-checkbox-group v-model="form.type">
-                            <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
-                            <el-checkbox label="地推活动" name="type"></el-checkbox>
-                            <el-checkbox label="线下主题活动" name="type"></el-checkbox>
-                            <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
-                        </el-checkbox-group>
-                    </el-form-item>
-                    <el-form-item label="特殊资源">
-                        <el-radio-group v-model="form.resource">
-                            <el-radio label="线上品牌商赞助"></el-radio>
-                            <el-radio label="线下场地免费"></el-radio>
-                        </el-radio-group>
-                    </el-form-item>
-                    <el-form-item label="活动形式">
-                        <el-input type="textarea" v-model="form.desc"></el-input>
-                    </el-form-item>
+
                     <el-form-item>
                         <el-button type="primary" @click="handleEdit">立即创建</el-button>
                         <el-button>取消</el-button>
@@ -175,15 +181,16 @@
 
 <script>
     import {ResourceActions} from "../../store/actions";
-    import ElSelectDropdown from "element-ui/packages/select/src/select-dropdown";
 
     export default {
         name: "resourceManager",
-        components: {ElSelectDropdown},
         data() {
             return {
                 form:{
-                    sort:0
+                    sort:0,
+                    extensions:[
+                        {key:'',value:''}
+                    ]
                 },
                 dialogVisible:false,
                 search: '',
@@ -200,24 +207,6 @@
                         url: "/system-manager",
                         code: "systemManager"}
                 ],
-                tableData: [
-                    {
-                        date: '2016-05-02',
-                        name: '王小虎',
-                        address: '上海市普陀区金沙江路 1518 弄'
-                    }, {
-                        date: '2016-05-04',
-                        name: '王小虎',
-                        address: '上海市普陀区金沙江路 1517 弄'
-                    }, {
-                        date: '2016-05-01',
-                        name: '王小虎',
-                        address: '上海市普陀区金沙江路 1519 弄'
-                    }, {
-                        date: '2016-05-03',
-                        name: '王小虎',
-                        address: '上海市普陀区金沙江路 1516 弄'
-                    }]
             }
 
         },
@@ -238,7 +227,15 @@
                 this.dialogVisible=true
             },
             handleDelete() {
+            },
+            handleAddExtension(){
+                this.form.extensions.push({key:'',value:''})
+            },
+
+            handleRemoveExtension(index){
+                this.form.extensions.splice(index,1)
             }
+
         }
     }
 </script>
